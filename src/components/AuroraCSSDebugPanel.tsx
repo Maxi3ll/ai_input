@@ -58,7 +58,7 @@ function buildAuroraCode({ colors, opacity, blur, mouseFollow }: AuroraCSSDebugP
   top: 20%; left: -5%;
   width: 50vw; height: 50vw;
   background: radial-gradient(circle,
-    ${colors.color4}55 0%, transparent 70%);
+    ${colors.color1}55 0%, transparent 70%);
 }
 
 /* ---- Mouse-follow animation (JS) ---- */

@@ -23,7 +23,7 @@ export function AIInputField({ controls }: AIInputFieldProps) {
     '--color-1': colors.color1,
     '--color-2': colors.color2,
     '--color-3': colors.color3,
-    '--color-4': colors.color4,
+    '--color-4': colors.color1,
     '--glow-intensity': glow.intensity,
     '--glow-spread': `${glow.spread}px`,
     '--glow-blur': `${glow.blur}px`,

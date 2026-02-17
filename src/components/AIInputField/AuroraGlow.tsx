@@ -132,7 +132,8 @@ function shineStyle(
 }
 
 export function AuroraLayers({ colors, speed, running, aurora }: AuroraLayersProps) {
-  const { color1, color2, color3, color4 } = colors;
+  const { color1, color2, color3 } = colors;
+  const color4 = color1;
   const playback = running ? 'running' : 'paused';
 
   const layerBase: React.CSSProperties = {

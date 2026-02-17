@@ -25,6 +25,9 @@ export default function App() {
           colors={controls.colors}
           opacity={bgAurora.bgOpacity}
           blur={bgAurora.bgBlur}
+          speed={bgAurora.speed}
+          amplitude={bgAurora.amplitude}
+          blend={bgAurora.blend}
           mouseFollow={bgAurora.mouseFollow}
           enabled={bgAurora.enabled}
         />

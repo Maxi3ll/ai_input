@@ -25,7 +25,7 @@ duration: ${(animation.speed * 1.67).toFixed(1)}s;
 /* Layer 3: Counter sweep */
 background: radial-gradient(
   ellipse 50% 40% at 80%→45%→15% 85%,
-  ${colors.color4});
+  ${colors.color1});
 duration: ${(animation.speed * 2).toFixed(1)}s;
 
 /* Layer 4: Top-edge shine */
@@ -92,7 +92,7 @@ border-radius: ${border.radius}px;`;
       ${colors.color1},
       ${colors.color2},
       ${colors.color3},
-      ${colors.color4}
+      ${colors.color1}
     ) border-box;
   animation: rotate ${animation.speed}s linear infinite;
 }
@@ -102,7 +102,7 @@ border-radius: ${border.radius}px;`;
   background: conic-gradient(
     from var(--angle),
     ${colors.color1}, ${colors.color2},
-    ${colors.color3}, ${colors.color4});
+    ${colors.color3}, ${colors.color1});
   opacity: ${glow.intensity};
   filter: blur(${glow.blur}px);
   inset: -${glow.spread}px;

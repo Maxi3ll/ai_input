@@ -7,10 +7,9 @@ export function useGradientControls(activeView: ActiveView) {
 
   const [colors, setColors] = useControls(() => ({
     'Gradient Colors': folder({
-      color1: { value: '#4285f4', label: 'Color 1' },
-      color2: { value: '#9b72cb', label: 'Color 2' },
-      color3: { value: '#d96570', label: 'Color 3' },
-      color4: { value: '#4285f4', label: 'Color 4' },
+      color1: { value: '#0078d6', label: 'Color 1' },
+      color2: { value: '#800080', label: 'Color 2' },
+      color3: { value: '#ffffff', label: 'Color 3' },
     }),
   }), []);
 
@@ -66,7 +65,6 @@ export function useGradientControls(activeView: ActiveView) {
       color1: colors.color1,
       color2: colors.color2,
       color3: colors.color3,
-      color4: colors.color4,
     },
     glow: {
       intensity: glow.intensity,
