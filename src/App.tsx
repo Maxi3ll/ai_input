@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div className="app-root">
-      <Leva collapsed={false} titleBar={{ title: 'Gradient Shine' }} />
+      <Leva collapsed={false} titleBar={{ title: 'AI Settings' }} />
       <SegmentedButton
         segments={VIEW_SEGMENTS}
         activeIndex={activeView === 'input' ? 0 : 1}
