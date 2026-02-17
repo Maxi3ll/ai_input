@@ -174,7 +174,7 @@ export function AuroraLayers({ colors, speed, running, aurora }: AuroraLayersPro
   // For layer1 we want a slightly different middle frame
   const layer1Bg = [layer1Kf[0], layer1KfMid[1], layer1Kf[2]];
 
-  const layer2Bg = buildComposite('layer2', color2, 60);
+  buildComposite('layer2', color2, 60);
   // Middle frame uses color3 instead
   const layer2BgMid = [0, 1, 2].map((kfIdx) =>
     allAnchors
@@ -184,7 +184,7 @@ export function AuroraLayers({ colors, speed, running, aurora }: AuroraLayersPro
       .join(', '),
   );
 
-  const layer3Bg = buildComposite('layer3', color4, 55);
+  buildComposite('layer3', color4, 55);
   const layer3BgMid = [0, 1, 2].map((kfIdx) =>
     allAnchors
       .map((a) => gradStr(a.layer3[kfIdx], color4, kfIdx === 1 ? 60 : 55))

@@ -14,7 +14,7 @@ const VIEW_SEGMENTS = ['Input Field', 'Background Aurora'];
 
 export default function App() {
   const [activeView, setActiveView] = useState<ActiveView>('input');
-  const [controls, setters] = useGradientControls(activeView);
+  const [controls] = useGradientControls(activeView);
   const theme = useThemeControls();
   const bgAurora = useBackgroundAuroraControls(activeView);
 
@@ -36,7 +36,7 @@ export default function App() {
         onChange={(i) => setActiveView(i === 0 ? 'input' : 'aurora')}
       />
       {activeView === 'input' ? (
-        <InputFieldView controls={controls} setters={setters} />
+        <InputFieldView controls={controls} />
       ) : (
         <BackgroundAuroraView
           colors={controls.colors}
@@ -45,8 +45,6 @@ export default function App() {
           mouseFollow={bgAurora.mouseFollow}
           enabled={bgAurora.enabled}
           setEnabled={bgAurora.setEnabled}
-          setColors={setters.setColors}
-          setBgAurora={bgAurora.set}
         />
       )}
     </div>

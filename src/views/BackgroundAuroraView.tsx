@@ -1,4 +1,3 @@
-import { AuroraPresetButtons } from '../components/AuroraPresetButtons';
 import { AuroraCSSDebugPanel } from '../components/AuroraCSSDebugPanel';
 import type { GradientColors } from '../types';
 
@@ -9,8 +8,6 @@ interface BackgroundAuroraViewProps {
   mouseFollow: number;
   enabled: boolean;
   setEnabled: (v: boolean) => void;
-  setColors: (v: Partial<GradientColors>) => void;
-  setBgAurora: (v: { bgOpacity?: number; bgBlur?: number; mouseFollow?: number }) => void;
 }
 
 export function BackgroundAuroraView({
@@ -20,8 +17,6 @@ export function BackgroundAuroraView({
   mouseFollow,
   enabled,
   setEnabled,
-  setColors,
-  setBgAurora,
 }: BackgroundAuroraViewProps) {
   return (
     <>
