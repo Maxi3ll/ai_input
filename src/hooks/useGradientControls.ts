@@ -1,11 +1,12 @@
 import { useControls, folder } from 'leva';
-import type { GradientControlValues, GradientType } from '../types';
+import type { GradientControlValues } from '../types';
 import type { ActiveView } from '../App';
 
 export function useGradientControls(activeView: ActiveView) {
   const isInput = activeView === 'input';
 
-  const [colors, setColors] = useControls(() => ({
+  // 1. Gradient Colors
+  const [colors] = useControls(() => ({
     'Gradient Colors': folder({
       color1: { value: '#0078d6', label: 'Color 1' },
       color2: { value: '#800080', label: 'Color 2' },
@@ -13,7 +14,8 @@ export function useGradientControls(activeView: ActiveView) {
     }),
   }), []);
 
-  const [glow, setGlow] = useControls(() => ({
+  // 2. Glow
+  const [glow] = useControls(() => ({
     Glow: folder({
       intensity: { value: 0.4, min: 0, max: 1, step: 0.05, label: 'Intensity' },
       spread: { value: 15, min: 0, max: 60, step: 1, label: 'Spread (px)' },
@@ -21,13 +23,7 @@ export function useGradientControls(activeView: ActiveView) {
     }, { render: () => isInput }),
   }), [activeView]);
 
-  const [animation, setAnimation] = useControls(() => ({
-    Animation: folder({
-      speed: { value: 3, min: 0.5, max: 15, step: 0.5, label: 'Speed (sec)' },
-      running: { value: true, label: 'Running' },
-    }, { render: () => isInput }),
-  }), [activeView]);
-
+  // 3. Border
   const [border] = useControls(() => ({
     Border: folder({
       width: { value: 2, min: 1, max: 8, step: 1, label: 'Width (px)' },
@@ -39,6 +35,7 @@ export function useGradientControls(activeView: ActiveView) {
     }, { render: () => isInput }),
   }), [activeView]);
 
+  // 4. Aurora Direction
   const [aurora] = useControls(() => ({
     'Aurora Direction': folder({
       auroraTop: { value: false, label: 'Top' },
@@ -50,13 +47,11 @@ export function useGradientControls(activeView: ActiveView) {
     }, { render: () => isInput }),
   }), [activeView]);
 
-  const [type] = useControls(() => ({
-    Type: folder({
-      gradientType: {
-        value: 'aurora' as GradientType,
-        options: { Aurora: 'aurora', Trace: 'trace', Spin: 'spin' },
-        label: 'Gradient Type',
-      },
+  // Animation (used by input field internally)
+  const [animation] = useControls(() => ({
+    Animation: folder({
+      speed: { value: 3, min: 0.5, max: 15, step: 0.5, label: 'Speed (sec)' },
+      running: { value: true, label: 'Running' },
     }, { render: () => isInput }),
   }), [activeView]);
 
@@ -91,12 +86,7 @@ export function useGradientControls(activeView: ActiveView) {
       x: aurora.auroraX,
       y: aurora.auroraY,
     },
-    gradientType: type.gradientType as GradientType,
   };
 
-  const setters = { setColors, setGlow, setAnimation };
-
-  return [values, setters] as const;
+  return [values] as const;
 }
-
-export type GradientSetters = ReturnType<typeof useGradientControls>[1];

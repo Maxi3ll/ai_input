@@ -11,7 +11,7 @@ interface AIInputFieldProps {
 }
 
 export function AIInputField({ controls }: AIInputFieldProps) {
-  const { colors, glow, animation, border, gradientType } = controls;
+  const { colors, glow, animation, border } = controls;
 
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
@@ -98,55 +98,37 @@ export function AIInputField({ controls }: AIInputFieldProps) {
     <div
       className="ai-input-wrapper"
       style={cssVars}
-      data-gradient-type={gradientType}
+      data-gradient-type="aurora"
     >
-      {gradientType === 'aurora' && (
-        <>
-          <div
-            className="aurora-glow-container"
-            style={{
-              position: 'absolute',
-              zIndex: 0,
-              inset: `-${glow.spread}px`,
-              borderRadius: glowContainerRadius,
-              opacity: glow.intensity,
-              filter: `blur(${glow.blur}px)`,
-              overflow: 'hidden',
-              pointerEvents: 'none',
-            }}
-          >
-            <AuroraLayers colors={colors} speed={animation.speed} running={animation.running} aurora={controls.aurora} />
-          </div>
+      <div
+        className="aurora-glow-container"
+        style={{
+          position: 'absolute',
+          zIndex: 0,
+          inset: `-${glow.spread}px`,
+          borderRadius: glowContainerRadius,
+          opacity: glow.intensity,
+          filter: `blur(${glow.blur}px)`,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+        }}
+      >
+        <AuroraLayers colors={colors} speed={animation.speed} running={animation.running} aurora={controls.aurora} />
+      </div>
 
-          <div
-            className="aurora-border-container"
-            style={{
-              position: 'absolute',
-              zIndex: 1,
-              inset: `-${bTop}px -${bRight}px -${bBottom}px -${bLeft}px`,
-              borderRadius: borderContainerRadius,
-              overflow: 'hidden',
-              pointerEvents: 'none',
-            }}
-          >
-            <AuroraLayers colors={colors} speed={animation.speed} running={animation.running} aurora={controls.aurora} />
-          </div>
-        </>
-      )}
-
-      {gradientType === 'spin' && (
-        <>
-          <div className="glow-layer" />
-          <div className="border-layer" />
-        </>
-      )}
-
-      {gradientType === 'trace' && (
-        <>
-          <div className="trace-glow-layer" />
-          <div className="trace-border-layer" />
-        </>
-      )}
+      <div
+        className="aurora-border-container"
+        style={{
+          position: 'absolute',
+          zIndex: 1,
+          inset: `-${bTop}px -${bRight}px -${bBottom}px -${bLeft}px`,
+          borderRadius: borderContainerRadius,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+        }}
+      >
+        <AuroraLayers colors={colors} speed={animation.speed} running={animation.running} aurora={controls.aurora} />
+      </div>
 
       <div className="ai-input-container">
         <div className={contentClasses}>

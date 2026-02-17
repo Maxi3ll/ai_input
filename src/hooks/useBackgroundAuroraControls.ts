@@ -4,7 +4,7 @@ import type { ActiveView } from '../App';
 export function useBackgroundAuroraControls(activeView: ActiveView) {
   const isAurora = activeView === 'aurora';
 
-  const [values, set] = useControls(() => ({
+  const [values] = useControls(() => ({
     'Background Aurora': folder({
       enabled: { value: true, label: 'Enabled', render: () => isAurora },
       bgOpacity: { value: 0.25, min: 0, max: 1, step: 0.05, label: 'Opacity', render: () => isAurora },
@@ -16,7 +16,5 @@ export function useBackgroundAuroraControls(activeView: ActiveView) {
     }),
   }), [activeView]);
 
-  const setEnabled = (v: boolean) => set({ enabled: v });
-
-  return { ...values, setEnabled, set };
+  return values;
 }

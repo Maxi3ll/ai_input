@@ -6,10 +6,9 @@ interface CSSDebugPanelProps {
 }
 
 function buildCssCode(controls: GradientControlValues): string {
-  const { colors, glow, animation, border, gradientType } = controls;
+  const { colors, glow, animation, border } = controls;
 
-  if (gradientType === 'aurora') {
-    return `/* Aurora Glow — 4 animated radial-gradient layers */
+  return `/* Aurora Glow — 4 animated radial-gradient layers */
 /* Layer 1: Base horizon glow */
 background: radial-gradient(
   ellipse 80% 50% at 50% 110%,
@@ -38,82 +37,7 @@ filter: blur(${glow.blur}px);
 opacity: ${glow.intensity};
 inset: -${glow.spread}px;
 border-radius: ${border.radius}px;`;
-  }
-
-  if (gradientType === 'trace') {
-    return `/* Trace — orbiting light beam */
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
-
-@keyframes trace { to { --angle: 360deg; } }
-
-.element {
-  border-radius: ${border.radius}px;
-  border: ${border.width}px solid transparent;
-  background:
-    linear-gradient(var(--bg), var(--bg)) padding-box,
-    conic-gradient(
-      from var(--angle),
-      ${colors.color1} 0%,
-      ${colors.color2} 4%,
-      transparent 12%,
-      transparent 88%,
-      ${colors.color3} 94%,
-      ${colors.color1} 100%
-    ) border-box;
-  animation: trace ${animation.speed}s linear infinite;
-}
-
-/* Glow follows the beam */
-.element::before {
-  background: conic-gradient(
-    from var(--angle),
-    ${colors.color1} 0%, ${colors.color2} 5%,
-    transparent 15%, transparent 85%,
-    ${colors.color3} 92%, ${colors.color1} 100%);
-  opacity: ${glow.intensity};
-  filter: blur(${glow.blur}px);
-  inset: -${glow.spread}px;
-}`;
-  }
-
-  // spin
-  return `/* Spin — conic-gradient rotation */
-.element {
-  border-radius: ${border.radius}px;
-  border: ${border.width}px solid transparent;
-  background:
-    linear-gradient(var(--bg), var(--bg)) padding-box,
-    conic-gradient(
-      from var(--angle),
-      ${colors.color1},
-      ${colors.color2},
-      ${colors.color3},
-      ${colors.color1}
-    ) border-box;
-  animation: rotate ${animation.speed}s linear infinite;
-}
-
-/* Glow */
-.element::before {
-  background: conic-gradient(
-    from var(--angle),
-    ${colors.color1}, ${colors.color2},
-    ${colors.color3}, ${colors.color1});
-  opacity: ${glow.intensity};
-  filter: blur(${glow.blur}px);
-  inset: -${glow.spread}px;
-}`;
-}
-
-const labels: Record<string, string> = {
-  aurora: 'Aurora',
-  trace: 'Trace',
-  spin: 'Spin',
-};
 
 export function CSSDebugPanel({ controls }: CSSDebugPanelProps) {
   const [copied, setCopied] = useState(false);
@@ -130,7 +54,7 @@ export function CSSDebugPanel({ controls }: CSSDebugPanelProps) {
   return (
     <div className={`css-debug-panel ${open ? 'css-debug-panel--open' : ''}`}>
       <div className="css-debug-header" onClick={() => setOpen(!open)} role="button" tabIndex={0}>
-        <span className="css-debug-title">Live CSS — {labels[controls.gradientType]}</span>
+        <span className="css-debug-title">Live CSS — Aurora</span>
         <div className="css-debug-actions">
           <button className="css-debug-copy" onClick={(e) => { e.stopPropagation(); handleCopy(); }}>
             {copied ? 'Copied!' : 'Copy'}

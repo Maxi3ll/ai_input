@@ -12,6 +12,7 @@ interface BackgroundAuroraProps {
   blend: number;
   mouseFollow: number;
   enabled: boolean;
+  fullscreen?: boolean;
 }
 
 const VERT = `#version 300 es
@@ -132,6 +133,7 @@ export function BackgroundAurora({
   blend,
   mouseFollow,
   enabled,
+  fullscreen = false,
 }: BackgroundAuroraProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const propsRef = useRef({ colors, opacity, blur, speed, amplitude, blend, mouseFollow });
@@ -209,7 +211,8 @@ export function BackgroundAurora({
       renderer.setSize(w, h);
       program.uniforms.uResolution.value = [w, h];
     }
-    window.addEventListener('resize', resize);
+    const ro = new ResizeObserver(resize);
+    ro.observe(ctn);
     resize();
 
     let animateId = 0;
@@ -243,7 +246,7 @@ export function BackgroundAurora({
 
     return () => {
       cancelAnimationFrame(animateId);
-      window.removeEventListener('resize', resize);
+      ro.disconnect();
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
@@ -256,7 +259,7 @@ export function BackgroundAurora({
   return (
     <div
       ref={containerRef}
-      className="bg-aurora"
+      className={`bg-aurora${fullscreen ? ' bg-aurora--fullscreen' : ''}`}
       style={{
         filter: blur > 0 ? `blur(${blur}px)` : undefined,
       }}

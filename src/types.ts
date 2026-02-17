@@ -33,8 +33,6 @@ export interface AuroraSettings {
   y: number;
 }
 
-export type GradientType = 'aurora' | 'spin' | 'trace';
-export type ThemeMode = 'dark' | 'light';
 export type InputState = 'default' | 'default-blinking' | 'filled' | 'cancel' | 'disabled';
 
 export interface GradientControlValues {
@@ -43,12 +41,4 @@ export interface GradientControlValues {
   animation: AnimationSettings;
   border: BorderSettings;
   aurora: AuroraSettings;
-  gradientType: GradientType;
-}
-
-export interface Preset {
-  name: string;
-  colors: GradientColors;
-  glow: GlowSettings;
-  speed: number;
 }
