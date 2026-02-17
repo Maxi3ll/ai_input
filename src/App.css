@@ -197,6 +197,17 @@ body {
 }
 
 /* ============================================
+   Aurora Presets Bar — fixed top
+   ============================================ */
+.aurora-presets-bar {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* ============================================
    CSS Debug Panel
    ============================================ */
 .css-debug-panel {
