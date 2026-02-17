@@ -1,0 +1,164 @@
+/* ============================================
+   AI Input Field — Figma-matched layout
+   Interactive component with state transitions
+   ============================================ */
+
+.ai-input-wrapper {
+  --_radius-tl: var(--border-radius-tl, 8px);
+  --_radius-tr: var(--border-radius-tr, 8px);
+  --_radius-bl: var(--border-radius-bl, 8px);
+  --_radius-br: var(--border-radius-br, 8px);
+  --_radius: var(--_radius-tl) var(--_radius-tr) var(--_radius-br) var(--_radius-bl);
+
+  position: relative;
+  width: 100%;
+}
+
+/* ======================
+   OUTER CARD — frosted glass
+   Figma: rgba(248,248,248,0.1), blur(40px), shadow, 8px radius, 16px padding
+   ====================== */
+.ai-input-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background: var(--card-bg);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.05), 0px 16px 24px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(40px);
+  border-radius: var(--_radius);
+  transition: background-color 0.4s ease;
+}
+
+/* ======================
+   INNER INPUT
+   Figma: white bg, 1px solid #bbb, 1px radius
+   ====================== */
+.ai-input-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 16px;
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 1px;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Left section: icon + textarea */
+.ai-input-start {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  min-height: 1px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Icon group — Figma: vertically centered within min-h 56px row */
+.ai-input-icon {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  min-height: 56px;
+  flex-shrink: 0;
+}
+
+/* Sparkle icon — Figma: 14x14, #696969 */
+.sparkle-icon {
+  flex-shrink: 0;
+  color: var(--icon-color);
+  transition: color 0.3s ease;
+}
+
+/* Textarea wrapper — Figma: min-h 56px, max-h 168px */
+.ai-input-field-wrap {
+  flex: 1 0 0;
+  min-height: 56px;
+  max-height: 168px;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 16px 0;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Figma: 16px, line-height 24px, letter-spacing 0.2px */
+.ai-input-field-wrap textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--text-primary);
+  caret-color: var(--text-primary);
+  resize: none;
+  overflow: hidden;
+}
+
+.ai-input-field-wrap textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* End section: action button — Figma: align bottom, pl 8px, py 12px */
+.ai-input-end {
+  display: flex;
+  align-items: flex-end;
+  align-self: stretch;
+  padding: 12px 0 12px 8px;
+  flex-shrink: 0;
+}
+
+/* ======================
+   ROUND BUTTON
+   Figma: 32x32, #DBDBDB bg, white icon, no border, round
+   ====================== */
+.send-button {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--round-btn-border);
+  border-radius: 9999px;
+  background: var(--round-btn-bg);
+  color: var(--round-btn-icon);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.send-button:hover {
+  opacity: 0.85;
+}
+
+.send-button:active {
+  transform: scale(0.95);
+}
+
+/* Active state — Figma: black bg, white icon, no border */
+.send-button--active {
+  background: var(--round-btn-active-bg);
+  color: var(--round-btn-active-icon);
+  border-color: transparent;
+}
+
+.send-button--active:hover {
+  opacity: 0.85;
+}
+
+/* Disabled wrapper */
+.ai-input-wrapper--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

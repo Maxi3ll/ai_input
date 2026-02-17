@@ -1,0 +1,38 @@
+/* ============================================
+   Background Aurora — Full-viewport gradient blobs
+   ============================================ */
+
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Blob initial positions */
+.bg-aurora-blob--0 {
+  top: -10%;
+  left: -10%;
+}
+
+.bg-aurora-blob--1 {
+  top: -10%;
+  right: -10%;
+}
+
+.bg-aurora-blob--2 {
+  bottom: -15%;
+  left: 25%;
+}
+
+.bg-aurora-blob--3 {
+  top: 20%;
+  left: -5%;
+}

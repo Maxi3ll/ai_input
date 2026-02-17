@@ -1,0 +1,319 @@
+/* ============================================
+   Global Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ============================================
+   Theme Tokens
+   ============================================ */
+[data-theme="dark"] {
+  --app-bg: #000000;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --input-bg: #1a1a2e;
+  --input-border: #444444;
+  --text-primary: #e8e8ed;
+  --text-muted: #6b6b80;
+  --text-secondary: #9898aa;
+  --icon-color: #9898aa;
+  --round-btn-bg: #444444;
+  --round-btn-border: #555555;
+  --round-btn-icon: #ffffff;
+  --round-btn-active-bg: #ffffff;
+  --round-btn-active-icon: #000000;
+  --preset-bg: rgba(255, 255, 255, 0.05);
+  --preset-border: rgba(255, 255, 255, 0.1);
+  --preset-hover-bg: rgba(255, 255, 255, 0.1);
+  --code-bg: #0e0e16;
+  --code-border: rgba(255, 255, 255, 0.08);
+  --code-text: #a8b2d1;
+  --copy-bg: rgba(255, 255, 255, 0.06);
+  --copy-hover-bg: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="light"] {
+  --app-bg: #ffffff;
+  --card-bg: rgba(248, 248, 248, 0.1);
+  --input-bg: #ffffff;
+  --input-border: #bbbbbb;
+  --text-primary: #333333;
+  --text-muted: #696969;
+  --text-secondary: #5a5a72;
+  --icon-color: #696969;
+  --round-btn-bg: #ffffff;
+  --round-btn-border: #e8e8e8;
+  --round-btn-icon: #e8e8e8;
+  --round-btn-active-bg: #000000;
+  --round-btn-active-icon: #ffffff;
+  --preset-bg: rgba(0, 0, 0, 0.03);
+  --preset-border: rgba(0, 0, 0, 0.1);
+  --preset-hover-bg: rgba(0, 0, 0, 0.07);
+  --code-bg: #f5f6f8;
+  --code-border: rgba(0, 0, 0, 0.1);
+  --code-text: #4a5568;
+  --copy-bg: rgba(0, 0, 0, 0.04);
+  --copy-hover-bg: rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   App Layout
+   ============================================ */
+.app-root {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  background: var(--app-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  transition: background-color 0.4s ease;
+  gap: 32px;
+}
+
+/* ============================================
+   Toolbar — Toggle row above title
+   ============================================ */
+.app-toolbar {
+  position: fixed;
+  top: 16px;
+  left: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-toolbar-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  transition: color 0.4s ease;
+}
+
+/* Toggle switch — 40x22 pill */
+.toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 11px;
+  background: var(--input-border);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.toggle-switch--active {
+  background: var(--round-btn-active-bg);
+}
+
+.toggle-switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--app-bg);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.toggle-switch--active .toggle-switch-thumb {
+  transform: translateX(18px);
+  background: var(--round-btn-active-icon);
+}
+
+.app-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.4s ease;
+}
+
+.input-stage {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+/* ============================================
+   Preset Buttons
+   ============================================ */
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.preset-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--preset-border);
+  border-radius: 100px;
+  background: var(--preset-bg);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.preset-button:hover {
+  background: var(--preset-hover-bg);
+  color: var(--text-primary);
+}
+
+.preset-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ============================================
+   CSS Debug Panel
+   ============================================ */
+.css-debug-panel {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 100%;
+  max-width: 720px;
+  border: 1px solid var(--code-border);
+  border-radius: 10px 10px 0 0;
+  background: var(--code-bg);
+  overflow: hidden;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.css-debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.css-debug-panel--open .css-debug-header {
+  border-bottom: 1px solid var(--code-border);
+}
+
+.css-debug-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.css-debug-chevron {
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.css-debug-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.css-debug-copy {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: var(--copy-bg);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.css-debug-copy:hover {
+  background: var(--copy-hover-bg);
+}
+
+.css-debug-code {
+  padding: 16px;
+  margin: 0;
+  max-height: 240px;
+  overflow: auto;
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--code-text);
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* ============================================
+   Segmented Button
+   ============================================ */
+.segmented-button {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--preset-border);
+  border-radius: 100px;
+  background: var(--preset-bg);
+  backdrop-filter: blur(20px);
+}
+
+.segmented-button__option {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.segmented-button__option:hover:not(.segmented-button__option--active) {
+  background: var(--preset-hover-bg);
+  color: var(--text-primary);
+}
+
+.segmented-button__option--active {
+  background: var(--round-btn-active-bg);
+  color: var(--round-btn-active-icon);
+}
