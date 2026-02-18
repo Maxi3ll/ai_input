@@ -4,10 +4,13 @@ import { AuroraLayers } from './AIInputField/AuroraGlow';
 import { SparkleIcon } from './SparkleIcon';
 import './AITriggerButton.css';
 
+export type TriggerTheme = 'light' | 'dark';
+
 interface AITriggerButtonProps {
   label: string;
   borderRadius: number;
   controls: GradientControlValues;
+  theme?: TriggerTheme;
   onTrigger?: () => void;
 }
 
@@ -32,9 +35,11 @@ export function AITriggerButton({
   label,
   borderRadius,
   controls,
+  theme = 'light',
   onTrigger,
 }: AITriggerButtonProps) {
   const { colors, glow, animation, aurora, border } = controls;
+  const isDark = theme === 'dark';
 
   const glowSpread = glow.spread;
   const glowRadius = `${borderRadius + glowSpread}px`;
@@ -46,7 +51,7 @@ export function AITriggerButton({
   } as CSSProperties;
 
   return (
-    <div className="ai-trigger-outer" style={wrapStyle}>
+    <div className={`ai-trigger-outer ${isDark ? 'ai-trigger--dark' : ''}`} style={wrapStyle}>
       {/* Aurora glow layer — behind everything */}
       <div
         className="ai-trigger-aurora-glow"

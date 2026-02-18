@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import type { GradientControlValues } from '../types';
-import { AITriggerButton } from '../components/AITriggerButton';
+import { AITriggerButton, type TriggerTheme } from '../components/AITriggerButton';
 import './AITriggerView.css';
 
 interface AITriggerViewProps {
@@ -42,6 +43,9 @@ export function AITriggerView({
   stickyPreview,
   controls,
 }: AITriggerViewProps) {
+  const [theme, setTheme] = useState<TriggerTheme>('light');
+  const isDark = theme === 'dark';
+
   return (
     <>
       <div className="input-stage">
@@ -66,9 +70,29 @@ export function AITriggerView({
                 label={label}
                 borderRadius={borderRadius}
                 controls={controls}
+                theme={theme}
               />
             </div>
           </div>
+
+          {/* Gradual blur overlay — pure CSS */}
+          <div className="ai-trigger-demo__blur" />
+        </div>
+
+        {/* Theme toggle */}
+        <div className="ai-trigger-theme-toggle">
+          <button
+            className={`ai-trigger-theme-toggle__btn ${!isDark ? 'ai-trigger-theme-toggle__btn--active' : ''}`}
+            onClick={() => setTheme('light')}
+          >
+            Light
+          </button>
+          <button
+            className={`ai-trigger-theme-toggle__btn ${isDark ? 'ai-trigger-theme-toggle__btn--active' : ''}`}
+            onClick={() => setTheme('dark')}
+          >
+            Dark
+          </button>
         </div>
       </div>
 
@@ -78,6 +102,7 @@ export function AITriggerView({
             label={label}
             borderRadius={borderRadius}
             controls={controls}
+            theme={theme}
           />
         </div>
       )}

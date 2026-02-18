@@ -90,6 +90,60 @@
   color: var(--text-muted);
 }
 
+/* ============================================
+   Gradual Blur — bottom fade (pure CSS)
+   Three stacked layers with increasing blur,
+   each masked with a gradient for smooth falloff.
+   ============================================ */
+
+.ai-trigger-demo__blur {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ai-trigger-demo__blur,
+.ai-trigger-demo__blur::before,
+.ai-trigger-demo__blur::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* Layer 1 (top): light blur, tallest, fades in gently */
+.ai-trigger-demo__blur::before {
+  height: 140px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* Layer 2 (mid): medium blur, shorter */
+.ai-trigger-demo__blur::after {
+  height: 100px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Layer 3 (bottom): heavy blur, shortest — on the element itself */
+.ai-trigger-demo__blur {
+  height: 60px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
 /* Sticky trigger anchored to bottom of scroll area */
 .ai-trigger-demo__sticky {
   position: sticky;
@@ -105,7 +159,84 @@
   pointer-events: auto;
 }
 
-/* Sticky fixed preview (page-level) */
+/* ============================================
+   Dark Demo Variant
+   ============================================ */
+
+.ai-trigger-demo--dark {
+  background: #0a0a0a;
+}
+
+.ai-trigger-demo--dark .ai-trigger-demo__label {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.ai-trigger-card--dark {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.ai-trigger-card--dark:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ai-trigger-card--dark .ai-trigger-card__img {
+  background-color: #222222;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%);
+}
+
+.ai-trigger-card--dark .ai-trigger-card__title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ai-trigger-card--dark .ai-trigger-card__desc {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   Theme Toggle
+   ============================================ */
+
+.ai-trigger-theme-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--preset-border);
+  border-radius: 100px;
+  background: var(--preset-bg);
+}
+
+.ai-trigger-theme-toggle__btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ai-trigger-theme-toggle__btn:hover:not(.ai-trigger-theme-toggle__btn--active) {
+  background: var(--preset-hover-bg);
+  color: var(--text-primary);
+}
+
+.ai-trigger-theme-toggle__btn--active {
+  background: var(--round-btn-active-bg);
+  color: var(--round-btn-active-icon);
+}
+
+/* ============================================
+   Sticky Fixed Preview (page-level)
+   ============================================ */
+
 .ai-trigger-fixed-preview {
   position: fixed;
   bottom: 24px;
