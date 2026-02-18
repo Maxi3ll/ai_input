@@ -3,7 +3,7 @@ import type { GradientControlValues } from '../types';
 import type { ActiveView } from '../App';
 
 export function useGradientControls(activeView: ActiveView) {
-  const isInput = activeView === 'input';
+  const isInput = activeView === 'input' || activeView === 'trigger';
 
   // 1. Gradient Colors
   const [colors] = useControls(() => ({

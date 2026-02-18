@@ -1,0 +1,90 @@
+/* ============================================
+   AI Trigger Button – Glassmorphism + Aurora
+   ============================================ */
+
+.ai-trigger-outer {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Glass content sits above aurora layers –
+   matches the input field's frosted-glass card style */
+.ai-trigger-wrap {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: var(--trigger-radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow:
+    0 0 4px rgba(0, 0, 0, 0.05),
+    0 16px 24px rgba(0, 0, 0, 0.05);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+/* Primary "Help me choose" button */
+.ai-trigger-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--round-btn-active-bg);
+  color: var(--round-btn-active-icon);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.ai-trigger-primary:hover {
+  opacity: 0.85;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.ai-trigger-primary:active {
+  transform: scale(0.97);
+}
+
+.ai-trigger-sparkle {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Secondary icon-only button */
+.ai-trigger-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: var(--preset-bg);
+  color: var(--icon-color);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ai-trigger-secondary:hover {
+  background: var(--preset-hover-bg);
+  color: var(--text-primary);
+}
+
+.ai-trigger-secondary:active {
+  transform: scale(0.93);
+}
+
