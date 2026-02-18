@@ -30,9 +30,9 @@ body {
   --text-muted: #696969;
   --text-secondary: #5a5a72;
   --icon-color: #696969;
-  --round-btn-bg: #ffffff;
-  --round-btn-border: #e8e8e8;
-  --round-btn-icon: #e8e8e8;
+  --round-btn-bg: #DBDBDB;
+  --round-btn-border: transparent;
+  --round-btn-icon: #ffffff;
   --round-btn-active-bg: #000000;
   --round-btn-active-icon: #ffffff;
   --preset-bg: rgba(0, 0, 0, 0.03);

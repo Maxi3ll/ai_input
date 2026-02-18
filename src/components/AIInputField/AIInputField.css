@@ -38,7 +38,7 @@
    ====================== */
 .ai-input-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   width: 100%;
@@ -52,18 +52,17 @@
 .ai-input-start {
   display: flex;
   flex: 1 0 0;
-  align-items: flex-start;
+  align-items: center;
   min-height: 1px;
   min-width: 0;
   overflow: hidden;
 }
 
-/* Icon group — Figma: vertically centered within min-h 56px row */
+/* Icon group — vertically centered via align-self */
 .ai-input-icon {
   display: flex;
   align-items: center;
   align-self: center;
-  min-height: 56px;
   flex-shrink: 0;
 }
 
@@ -74,23 +73,23 @@
   transition: color 0.3s ease;
 }
 
-/* Textarea wrapper — Figma: min-h 56px, max-h 168px */
+/* Textarea wrapper — max-h 168px for multi-line growth */
 .ai-input-field-wrap {
   flex: 1 0 0;
-  min-height: 56px;
   max-height: 168px;
   min-width: 0;
   overflow-y: auto;
-  padding: 16px 0;
+  padding: 15px 0;
   padding-left: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Figma: 16px, line-height 24px, letter-spacing 0.2px */
+/* 16px, line-height 24px, letter-spacing 0.2px */
 .ai-input-field-wrap textarea {
   width: 100%;
+  padding: 0;
   border: none;
   outline: none;
   background: transparent;
@@ -127,10 +126,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid var(--round-btn-border);
+  width: 32px;
+  height: 32px;
+  padding: 10px;
+  border: none;
   border-radius: 9999px;
   background: var(--round-btn-bg);
   color: var(--round-btn-icon);
